@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:db="http://www.mulesoft.org/schema/mule/db"
+	xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/db http://www.mulesoft.org/schema/mule/db/current/mule-db.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<flow name="orderjourney-sys-drivinglicence-apiFlow" doc:id="37d9d123-1034-46c1-a2ff-00dd661aa690" >
+		<http:listener doc:name="Listener" doc:id="f2de15f3-4584-4e27-b2ae-bef6b4a32b35" />
+		<logger level="INFO" doc:name="Logger" doc:id="661580ee-6c09-4240-9c9a-77cc06b76233" />
+		<set-payload value="#[payload]" doc:name="Set Payload" doc:id="6a303889-fc3d-4207-b724-231f6436539e" mimeType="application/json"/>
+		<logger level="INFO" doc:name="Logger" doc:id="3bc05ed5-6a31-4272-a25a-759a8d54eae2" />
+		<http:request method="GET" doc:name="Request" doc:id="961dfcb9-4bdb-4ace-9d3f-8eaf28885cfd" />
+		<logger level="INFO" doc:name="Logger" doc:id="e435ff83-e4b6-4ca0-86ee-750985fbbe4a" />
+		<ee:transform doc:name="Transform Message" doc:id="529a8a69-e1ec-446d-947d-198535bce24d" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/java
+---
+{
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+</mule>
